@@ -7,7 +7,6 @@ import (
 	"runtime"
 )
 
-var Log *Logger
 
 //const DateFormat = "2006-01-02 15:04:05"
 type LogType uint8
@@ -65,23 +64,8 @@ func getInfo(n int) (info RuntimeInfo, err error) {
 	}
 	return
 }
-func init() {
-	var err error
-	Log, err = NewLogger(Config{
-		LogPath: "./",
-		Level:   FATAL | ERROR | DEBUG |INFO,
-		fileMaxSize: 1024*50,
-		TypeMapFile: map[LogType]string{
-			FATAL: "errors",
-			ERROR: "errors",
-			DEBUG: "info",
-			INFO: "info",
-		},
-	})
-	if err != nil {
-		panic(err)
-	}
-}
+
+
 
 func NewLogger(config Config) (l *Logger, err error) {
 	l = &Logger{
